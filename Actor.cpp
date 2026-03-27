@@ -4,9 +4,7 @@
 
 Actor::Actor(int InX, int InY, char InMesh) : X(InX)
 {
-	X = InX;
-	Y = InY;
-	Mesh = InMesh;
+
 }
 
 Actor::~Actor()

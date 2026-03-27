@@ -27,6 +27,7 @@ public:
 		return Actors;
 	}
 
+	void sort();
 	void Tick();
 	void Render();
 

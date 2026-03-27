@@ -1,5 +1,6 @@
 #include "Wall.h"
 
+
 Wall::Wall(int InX, int InY, char InMesh)
 {
 	X = InX;
@@ -10,3 +11,5 @@ Wall::Wall(int InX, int InY, char InMesh)
 Wall::~Wall()
 {
 }
+
+

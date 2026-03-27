@@ -24,6 +24,25 @@ void Player::BeginPlay()
 void Player::Tick()
 {
 	__super::Tick();
+
+	if (Engine::KeyCode == 'w')
+	{
+		Y--;
+	}
+	if (Engine::KeyCode == 's')
+	{
+		Y++;
+	}
+	if (Engine::KeyCode == 'a')
+	{
+		X--;
+	}
+	if (Engine::KeyCode == 'd')
+	{
+		X++;
+	}
+
+	Engine::KeyCode = 0;
 	
 }
 

@@ -33,6 +33,7 @@ void UWorld::Load(std::string MapName)
 		for (int X = 0; X < Line.length(); X++)
 		{
 			char C = Line[X];
+			
 
 			if (C == '*')
 			{
@@ -58,6 +59,7 @@ void UWorld::Load(std::string MapName)
 		Y++;
 	}
 }
+
 
 void UWorld::Tick()
 {
