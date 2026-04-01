@@ -1,11 +1,8 @@
 #pragma once
 #include "Actor.h"
-
-
-class Monster : public Actor
+class AMonster : public AActor
 {
-public: 
-	Monster(int InX = 0, int InY = 0, char InMesh = 'M');
-	virtual ~Monster();
+public:
+	AMonster(int InX = 0, int InY = 0, char InMesh = 'M');
+	virtual ~AMonster();
 };
-

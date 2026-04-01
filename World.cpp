@@ -1,5 +1,8 @@
 #include "World.h"
+#include "Engine.h"
+
 #include <fstream>
+#include <algorithm>
 
 #include "Actor.h"
 #include "Player.h"
@@ -18,48 +21,72 @@ UWorld::~UWorld()
 	{
 		delete Actor;
 	}
+
 	Actors.clear();
 }
 
 void UWorld::Load(std::string MapName)
 {
 	std::ifstream MapStream(MapName);
+
 	int Y = 0;
 	while (!MapStream.eof())
 	{
 		std::string Line;
 		std::getline(MapStream, Line);
-
-		for (int X = 0; X < Line.length(); X++)
+		for (int X = 0; X < Line.length(); ++X)
 		{
-			char C = Line[X];
-			
-
-			if (C == '*')
+			if (Line[X] == '*')
 			{
-				SpawnActor<Wall>()->SetActorLocation(X, Y);
+				SpawnActor<AWall>()->SetActorLocation(X, Y);
+				SpawnActor<AFloor>()->SetActorLocation(X, Y);
 			}
-			else if (C == ' ')
+			else if (Line[X] == ' ')
 			{
-				SpawnActor<Floor>()->SetActorLocation(X, Y);
+				SpawnActor<AFloor>()->SetActorLocation(X, Y);
 			}
-			else if (C == 'P')
+			else if (Line[X] == 'P')
 			{
-				SpawnActor<Player>()->SetActorLocation(X, Y);
+				SpawnActor<APlayer>()->SetActorLocation(X, Y);
+				SpawnActor<AFloor>()->SetActorLocation(X, Y);
 			}
-			else if (C == 'M')
+			else if (Line[X] == 'M')
 			{
-				SpawnActor<Monster>()->SetActorLocation(X, Y);
+				SpawnActor<AMonster>()->SetActorLocation(X, Y);
+				SpawnActor<AFloor>()->SetActorLocation(X, Y);
 			}
-			else if (C == 'G')
+			else if (Line[X] == 'G')
 			{
-				SpawnActor<Goal>()->SetActorLocation(X, Y);
+				SpawnActor<AGoal>()->SetActorLocation(X, Y);
+				SpawnActor<AFloor>()->SetActorLocation(X, Y);
 			}
 		}
 		Y++;
 	}
+
+	//Sort();
+	std::sort(Actors.begin(), Actors.end(),
+		[](AActor* First, AActor* Second) -> int {
+			return (First->GetZOrder() < Second->GetZOrder() ? 1 : 0);
+		}
+	);
 }
 
+void UWorld::Sort()
+{
+	for (int FirstIndex = 0; FirstIndex < Actors.size(); ++FirstIndex)
+	{
+		for (int SecondIndex = 0; SecondIndex < Actors.size(); ++SecondIndex)
+		{
+			if (Actors[FirstIndex]->GetZOrder() < Actors[SecondIndex]->GetZOrder())
+			{
+				auto Temp = Actors[FirstIndex];
+				Actors[FirstIndex] = Actors[SecondIndex];
+				Actors[SecondIndex] = Temp;
+			}
+		}
+	}
+}
 
 void UWorld::Tick()
 {
@@ -71,8 +98,12 @@ void UWorld::Tick()
 
 void UWorld::Render()
 {
+	GEngine->Clear();
+
 	for (auto Actor : Actors)
 	{
 		Actor->Render();
 	}
+
+	GEngine->Flip();
 }

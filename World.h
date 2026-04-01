@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 
-class Actor;
+class AActor;
 
 class UWorld
 {
@@ -11,28 +11,33 @@ public:
 	virtual ~UWorld();
 
 	template<typename T>
-	Actor* SpawnActor()
+	AActor* SpawnActor()
 	{
-		Actor* NewActor = new T;
+		AActor* NewActor = new T;
 		Actors.push_back(NewActor);
 
 		return NewActor;
 	}
 
-
 	void Load(std::string MapName);
 
-	inline std::vector<class Actor*>& GetActors()
+
+
+
+	inline std::vector<class AActor*>& GetActors()
 	{
 		return Actors;
 	}
 
-	void sort();
 	void Tick();
+
 	void Render();
 
 protected:
-	std::vector<class Actor*> Actors;
+
+	std::vector<class AActor*> Actors;
+
+	void Sort();
 
 };
 

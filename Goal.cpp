@@ -1,12 +1,14 @@
 #include "Goal.h"
 
-Goal::Goal(int InX, int InY, char InMesh)
+AGoal::AGoal(int InX, int InY, char InMesh)
 {
 	X = InX;
 	Y = InY;
 	Mesh = InMesh;
+	ZOrder = 30;
+
 }
 
-Goal::~Goal()
+AGoal::~AGoal()
 {
 }

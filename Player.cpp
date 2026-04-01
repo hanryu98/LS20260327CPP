@@ -1,52 +1,52 @@
 #include "Player.h"
 #include "Engine.h"
 
-#include<iostream>
+#include <iostream>
 
-Player::Player(int InX, int InY, char InMesh)
+APlayer::APlayer(int InX, int InY, char InMesh)
 {
 	X = InX;
 	Y = InY;
 	Mesh = InMesh;
+	ZOrder = 100;
 }
 
-Player::~Player()
+APlayer::~APlayer()
 {
-	
 }
 
-void Player::BeginPlay()
+void APlayer::BeginPlay()
 {
 	__super::BeginPlay();
-	
+
 }
 
-void Player::Tick()
+void APlayer::Tick()
 {
 	__super::Tick();
 
-	if (Engine::KeyCode == 'w')
+	if (UEngine::KeyCode == 'w')
 	{
 		Y--;
 	}
-	if (Engine::KeyCode == 's')
+	if (UEngine::KeyCode == 's')
 	{
 		Y++;
 	}
-	if (Engine::KeyCode == 'a')
+	if (UEngine::KeyCode == 'a')
 	{
 		X--;
 	}
-	if (Engine::KeyCode == 'd')
+	if (UEngine::KeyCode == 'd')
 	{
 		X++;
 	}
 
-	Engine::KeyCode = 0;
-	
+	UEngine::KeyCode = 0;
 }
 
-void Player::Render()
+void APlayer::Render()
 {
+	//AActor::Render();
 	__super::Render();
 }

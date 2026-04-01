@@ -1,13 +1,13 @@
 #include "Floor.h"
-#include <iostream>
 
-Floor::Floor(int InX, int InY, char InMesh)
+AFloor::AFloor(int InX, int InY, char InMesh)
 {
 	X = InX;
 	Y = InY;
 	Mesh = InMesh;
+	ZOrder = 0;
 }
 
-Floor::~Floor()
+AFloor::~AFloor()
 {
 }

@@ -1,14 +1,15 @@
 #pragma once
 #include "Actor.h"
-class Player : public Actor
+
+class APlayer : public AActor
 {
-public: 
-	Player(int InX = 1, int InY = 1, char InMesh = 'P');
-	virtual ~Player();
+public:
+	APlayer(int InX = 1, int InY = 1, char InMesh = 'P');
+	virtual ~APlayer();
 
 	virtual void BeginPlay() override;
+
 	virtual void Tick() override;
-	virtual void Render()override;
 
+	virtual void Render() override;
 };
-

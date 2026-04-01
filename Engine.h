@@ -1,28 +1,35 @@
 #pragma once
-#include<vector>
 
-class Actor;
+#include <vector>
+#include <Windows.h>
+
+class AActor;
 class UWorld;
 
-class Engine
+
+class UEngine
 {
 protected:
-	Engine();
-	static Engine* Instance;
+	UEngine();
+
+	static UEngine* Instance;
 
 public:
-	~Engine();
-	static Engine* GetInstance()
+	~UEngine();
+
+	static UEngine* GetInstance()
 	{
 		if (Instance == nullptr)
 		{
-			Instance = new Engine();			
+			Instance = new UEngine();
 		}
+
 		return Instance;
 	}
 
 	void Init();
 	void Term();
+
 	void Run();
 
 	inline UWorld* GetWorld()
@@ -32,16 +39,27 @@ public:
 
 	static int KeyCode;
 
+	//Renderer
+	HANDLE ScreenBufferHandle[2];
+	int ActiveScreenBufferIndex = 0;
+
+	void InitBuffer();
+	void Clear();
+	void Render(int InX, int InY, char InMesh);
+	void Flip();
+	void TermBuffer();
+
 protected:
 	void Input();
 	void Tick();
 	void Render();
 
+
 	class UWorld* World;
+
 	int bIsRunning : 1;
 
 };
 
-#define GEngine		Engine::GetInstance()
 
-
+#define GEngine			UEngine::GetInstance()

@@ -1,43 +1,22 @@
 ﻿#include <iostream>
 #include "Engine.h"
 #include "World.h"
-#include "Actor.h"
-#include "Player.h"
-#include <fstream>
+
+#include "SDL.h"
+//사용할 라이브러리 복사
+//include 경로 추가
+//library 경로 추가
+//library 파일 등록
+
+//사용할 라이브러리 파일 추가
+#pragma comment (lib, "SDL2")
+#pragma comment (lib, "SDL2main")
+
 
 using namespace std;
 
-//class Singleton
-//{
-//private:
-//	Singleton()
-//	{
-//
-//	}
-//
-//
-//static Singleton* Instance;
-//
-//public:
-//static Singleton* GetInstance()
-//{
-//	if (Instance == nullptr)
-//	{
-//		Instance = new Singleton();
-//	}
-//
-//	return Instance;
-//}
-//};
-//Singleton* Singleton::Instance = nullptr;
-
-int main()
+int SDL_main(int argc, char* argv[])
 {
-	GEngine->GetInstance();
-	GEngine->GetWorld()->Load("level01.txt");
-	GEngine->Run();
-
-
 	return 0;
 }
-//Actor, Engine, World, Player, Monster -> Wall, Floor
+

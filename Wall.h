@@ -1,9 +1,8 @@
 #pragma once
 #include "Actor.h"
-class Wall : public Actor
+class AWall : public AActor
 {
 public:
-	Wall(int InX = 0, int InY = 0, char InMesh = '*');
-	virtual ~Wall();
+	AWall(int InX = 0, int InY = 0, char InMesh = '*');
+	virtual ~AWall();
 };
-

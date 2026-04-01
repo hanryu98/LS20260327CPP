@@ -1,10 +1,8 @@
 #pragma once
 #include "Actor.h"
-
-class Goal : public Actor
+class AGoal : public AActor
 {
 public:
-	Goal(int InX = 0, int InY = 0, char InMesh = 'G');
-	virtual ~Goal();
+	AGoal(int InX = 0, int InY = 0, char InMesh = 'G');
+	virtual ~AGoal();
 };
-
