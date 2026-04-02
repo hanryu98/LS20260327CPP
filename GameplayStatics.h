@@ -1,7 +1,5 @@
 #pragma once
-
 #include "Engine.h"
-
 
 class UGameplayStatics
 {
@@ -13,5 +11,5 @@ public:
 	{
 		return GEngine->GetDeltaSeconds();
 	}
-};
 
+};

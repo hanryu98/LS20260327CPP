@@ -5,9 +5,9 @@
 
 AActor::AActor(int InX, int InY, char InMesh) : X(InX), Y(InY), Mesh(InMesh)
 {
-    R = 0;
-    G = 0;
-    B = 0;
+	R = 0;
+	G = 0;
+	B = 0;
 }
 
 AActor::~AActor()
@@ -16,29 +16,21 @@ AActor::~AActor()
 
 void AActor::BeginPlay()
 {
-
 }
 
 void AActor::Tick()
 {
-
 }
 
 void AActor::Render()
 {
-    //COORD Coordinate;
-    //Coordinate.X = X;
-    //Coordinate.Y = Y;
-    //SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Coordinate);
-
-    //std::cout << Mesh;
-
-    GEngine->Render(X, Y, Mesh);
-    GEngine->Render(X, Y, R, G, B);
+	int TileSize = 30;
+	SDL_Rect DestinationRect = { X * TileSize, Y * TileSize, TileSize, TileSize };
+	SDL_RenderCopy(GEngine->GetRenderer(), Texture, nullptr, &DestinationRect);
 }
 
 void AActor::SetActorLocation(int NewX, int NewY)
 {
-    X = NewX;
-    Y = NewY;
+	X = NewX;
+	Y = NewY;
 }
