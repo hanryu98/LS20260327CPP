@@ -14,9 +14,7 @@ AGoal::AGoal(int InX, int InY, char InMesh)
 	B = 255;
 
 	Resource TempResource = GEngine->GetResourceManager()->LoadTexture("Data/goal.bmp", true, 255, 255, 255);
-	Resource TempResource = GEngine->GetResourceManager()->LoadTexture("Data/goal.bmp", true, 252, 247, 235);
-	Image = TempResource.Image;
-	Texture = TempResource.Texture;
+
 	Image = TempResource.Image;
 	Texture = TempResource.Texture;
 }

@@ -84,7 +84,7 @@ void APlayer::Render()
 	int SpriteSizeX = Image->w / 5;
 	int SpriteSizeY = Image->h / 5;
 
-	//�ִϸ��̼� �ǰ� ����.
+
 	SDL_Rect SourceRect = { SpriteIndexX * SpriteSizeX, SpriteIndexY * SpriteSizeY, SpriteSizeX, SpriteSizeY };
 	SDL_Rect DestinationRect = { X * TileSize, Y * TileSize, TileSize, TileSize };
 	SDL_RenderCopy(GEngine->GetRenderer(), Texture, &SourceRect, &DestinationRect);

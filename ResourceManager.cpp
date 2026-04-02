@@ -19,7 +19,6 @@ UResourceManager::~UResourceManager()
 			SDL_DestroyTexture(Iter.second.Texture);
 		}
 	}
-
 	Resources.clear();
 }
 
@@ -29,7 +28,6 @@ Resource& UResourceManager::LoadTexture(std::string Filename, bool bIsColorKey, 
 	{
 		return Resources.find(Filename)->second;
 	}
-
 	Resource NewResource;
 
 	NewResource.Image = SDL_LoadBMP(Filename.c_str());
