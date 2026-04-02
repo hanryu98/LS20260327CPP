@@ -21,7 +21,11 @@ void UEngine::Init()
 	SDL_Init(SDL_INIT_EVERYTHING);
 
 	MyWindow = SDL_CreateWindow("Hello", 100, 100, 1024, 768, SDL_WINDOW_SHOWN);
-	MyRender = SDL_CreateRenderer(MyWindow, -1, 0);
+	MyRender = SDL_CreateRenderer(MyWindow, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE);
+
+	//그래픽 카드가 없는 환경에서 CPU로만 테스트 할 때
+	//MyRender = SDL_CreateRenderer(MyWindow, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_SOFTWARE);
+
 
 	bIsRunning = true;
 
@@ -44,13 +48,18 @@ void UEngine::Term()
 
 void UEngine::Run()
 {
+	Uint64 LastTime;	
+	
 	while (bIsRunning)
 	{
-		SDL_PollEvent(&MyEvent);
+		LastTime = SDL_GetTicks64();
 
+		SDL_PollEvent(&MyEvent);
 		Input();
 		Tick();
 		Render();
+		DeltaSeconds = (float)(SDL_GetTicks64() - LastTime) / 1000.0f ; // m/s
+
 	}
 }
 
@@ -76,8 +85,13 @@ void UEngine::InitBuffer()
 
 void UEngine::Clear()
 {
-	DWORD DW;
-	FillConsoleOutputCharacter(ScreenBufferHandle[ActiveScreenBufferIndex], ' ', 80 * 25, COORD{ 0, 0 }, &DW);
+	//CPU하는건 GPU가 할일을 적는거야. 많이 많이 많이
+	//GPU 한테 보낼 명령어 모음
+	SDL_SetRenderDrawColor(MyRender, 255, 255, 255, 255);
+	SDL_RenderClear(MyRender);
+
+	/*DWORD DW;
+	FillConsoleOutputCharacter(ScreenBufferHandle[ActiveScreenBufferIndex], ' ', 80 * 25, COORD{ 0, 0 }, &DW)*/;
 }
 
 void UEngine::Render(int InX, int InY, char InMesh)
@@ -132,11 +146,6 @@ void UEngine::Tick()
 
 void UEngine::Render()
 {
-	//CPU하는건 GPU가 할일을 적는거야. 많이 많이 많이
-	//GPU 한테 보낼 명령어 모음
-	SDL_SetRenderDrawColor(MyRender, 255, 255, 255, 255);
-	SDL_RenderClear(MyRender);
-
 	World->Render();
 
 	//그려CPU -> GPU

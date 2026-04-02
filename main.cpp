@@ -7,11 +7,23 @@ using namespace std;
 
 int SDL_main(int argc, char* argv[])
 {
-	GEngine->GetWorld()->Load("level01.txt");
+	Uint64 CurrentTime SDL_GetTicks64();
 
-	GEngine->Run();
+	for (int i = 0; i < 100000; i++)
+	{
 
-	delete GEngine;
+	}
+
+	Uint64 ElaspedTime = SDL_GetTicks64();
+
+
+	
+
+	//GEngine->GetWorld()->Load("level01.txt");
+
+	//GEngine->Run();
+
+	//delete GEngine;
 
 	return 0;
 }
