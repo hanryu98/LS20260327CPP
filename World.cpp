@@ -62,21 +62,17 @@ void UWorld::Load(std::string MapName)
 				SpawnActor<AGoal>()->SetActorLocation(X, Y);
 				SpawnActor<AFloor>()->SetActorLocation(X, Y);
 			}
-
 			if (MaxX < X + 1)
 			{
 				MaxX = X + 1;
 			}
-
 		}
 		Y++;
 	}
-
 	MaxY = Y;
 
 	SDL_SetWindowSize(GEngine->GetWindow(), (MaxX) * 30, MaxY * 30);
 
-	//Sort();
 	std::sort(Actors.begin(), Actors.end(),
 		[](AActor* First, AActor* Second) -> int {
 			return (First->GetZOrder() < Second->GetZOrder() ? 1 : 0);
