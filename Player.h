@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include "Actor.h"
 
+class USpriteAnimationComponent;
+
 class USpriteComponent;
 
 class APlayer : public AActor
@@ -11,7 +13,7 @@ public:
 
 	virtual void Tick() override;
 
-	USpriteComponent* SpriteComponent;
+	USpriteAnimationComponent* SpriteAnimationComponent;
 
 
 protected:
