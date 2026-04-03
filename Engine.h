@@ -3,6 +3,7 @@
 #include <vector>
 #include <Windows.h>
 #include "SDL.h"
+#include "PlaySound.h"
 
 #pragma comment(lib, "SDL2")
 #pragma comment(lib, "SDL2main")
@@ -100,6 +101,8 @@ protected:
 	float DeltaSeconds;
 
 	UResourceManager* ResourceManager;
+
+	SPlaySound* PlaySound;
 };
 
 

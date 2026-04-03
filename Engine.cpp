@@ -162,3 +162,5 @@ void UEngine::Render()
 	//�׷�CPU -> GPU
 	SDL_RenderPresent(MyRenderer);
 }
+
+// https://cppdeveloper.tistory.com/entry/C%EB%A1%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%EA%B2%8C%EC%9E%84-%EC%97%94%EC%A7%84-%EA%B0%9C%EB%B0%9C-Day-13-%EC%82%AC%EC%9A%B4%EB%93%9C-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EA%B8%B0%EC%B4%88-SDLmixer
