@@ -1,9 +1,10 @@
 ﻿#pragma once
 #include "Actor.h"
+#include <xkeycheck.h>
 
 class USpriteAnimationComponent;
-
-class USpriteComponent;
+class UCollisionComponent;
+class AActor;
 
 class APlayer : public AActor
 {
@@ -11,18 +12,20 @@ public:
 	APlayer(int InX = 1, int InY = 1, char InMesh = 'P');
 	virtual ~APlayer();
 
+	virtual void BeginPlay() override;
+
 	virtual void Tick() override;
+
+	virtual void ReceiveHit(AActor* Other) override;
+
+	void ProcessBeginOverlap(AActor* OtherActor);
 
 	USpriteAnimationComponent* SpriteAnimationComponent;
 
+	UCollisionComponent* CollisionComponent;
 
 protected:
-	int SpriteIndexX = 0;
-	int SpriteIndexY = 0;
-
-	float ElapsedTime = 0;
-	float ExecutionTime = 0.1f;
+	bool PredictMove(int InX, int InY); //Movement Component ¸¸µå¼À //³­ ¾ÈÇÑ´Ù.
 
 
 };
-

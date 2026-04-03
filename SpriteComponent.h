@@ -3,7 +3,7 @@
 #include "RenderableComponent.h"
 #include "SDL.h"
 
-class USpriteComponent : public UComponent, IRenderableComponent
+class USpriteComponent : public UComponent, public IRenderableComponent
 {
 public:
 	USpriteComponent();
@@ -23,4 +23,3 @@ public:
 	SDL_Surface* Image;
 	SDL_Texture* Texture;
 };
-

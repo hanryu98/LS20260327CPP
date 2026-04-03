@@ -1,9 +1,11 @@
 #pragma once
 #include <string>
 #include <vector>	
+#include <functional>
 
+using FActorBeginOverlapSingnature = std::function<void(class AActor* OtherActor)>;
 
-struct SDL_Surface;
+struct SDL_Surface; 
 struct SDL_Texture;
 
 class UComponent;
@@ -39,6 +41,10 @@ public:
 	{
 		return Y;
 	}
+
+	FActorBeginOverlapSingnature OnActorBeginOverlap;
+
+	virtual void ReceiveHit(class AActor* Other);
 
 protected:
 	int X;
