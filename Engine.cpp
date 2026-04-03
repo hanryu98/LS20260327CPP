@@ -86,6 +86,8 @@ void UEngine::InitBuffer()
 
 void UEngine::Clear()
 {
+	//CPU하는건 GPU가 할일을 적는거야. 많이 많이 많이
+	//GPU 한테 보낼 명령어 모음
 	SDL_SetRenderDrawColor(MyRenderer, 255, 255, 255, 255);
 	SDL_RenderClear(MyRenderer);
 
@@ -115,9 +117,12 @@ void UEngine::Render(int InX, int InY, int R, int G, int B)
 void UEngine::Render(int InX, int InY, SDL_Texture* InTexture)
 {
 	int TileSize = 30;
+
 	SDL_Rect MyRect = { InX * TileSize, InY * TileSize, TileSize, TileSize };
 	SDL_RenderCopy(MyRenderer, InTexture, nullptr, &MyRect);
 }
+
+
 
 void UEngine::Flip()
 {
@@ -153,6 +158,6 @@ void UEngine::Render()
 {
 	World->Render();
 
-	//�׷�CPU -> GPU
+	//그려CPU -> GPU
 	SDL_RenderPresent(MyRenderer);
 }

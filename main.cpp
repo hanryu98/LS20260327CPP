@@ -2,9 +2,12 @@
 #include "Engine.h"
 #include "World.h"
 
-#include <map>
+#include "Actor.h"
+#include "Floor.h"
+#include "SpriteComponent.h"
+#include "RenderableComponent.h"
 
-using namespace std;
+
 
 int SDL_main(int argc, char* argv[])
 {
@@ -16,4 +19,5 @@ int SDL_main(int argc, char* argv[])
 
 	return 0;
 }
+
 

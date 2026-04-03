@@ -23,3 +23,4 @@ protected:
 
 	std::map<std::string, Resource> Resources;
 };
+
