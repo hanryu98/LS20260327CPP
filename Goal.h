@@ -8,5 +8,5 @@ public:
 
 	class USpriteComponent* SpriteComponent;
 
+	class UCollisionComponent* CollisionComponent;
 };
-

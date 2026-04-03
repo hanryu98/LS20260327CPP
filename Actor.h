@@ -3,12 +3,13 @@
 #include <vector>	
 #include <functional>
 
-using FActorBeginOverlapSingnature = std::function<void(class AActor* OtherActor)>;
+using FActorBeginOverlapSignature = std::function<void(class AActor* OtherActor)>;
 
-struct SDL_Surface; 
+struct SDL_Surface;
 struct SDL_Texture;
 
 class UComponent;
+
 
 class AActor
 {
@@ -18,17 +19,9 @@ public:
 
 	virtual void BeginPlay();
 
-	//override
 	virtual void Tick();
 
-	//virtual void Render();
-
 	void SetActorLocation(int NewX, int NewY);
-
-	//inline const int GetZOrder() 
-	//{
-	//	return ZOrder;
-	//}
 
 	std::vector<UComponent*> Components;
 
@@ -42,7 +35,7 @@ public:
 		return Y;
 	}
 
-	FActorBeginOverlapSingnature OnActorBeginOverlap;
+	FActorBeginOverlapSignature OnActorBeginOverlap;
 
 	virtual void ReceiveHit(class AActor* Other);
 
@@ -70,4 +63,3 @@ protected:
 	//SDL_Surface* Image;
 	//SDL_Texture* Texture;
 };
-

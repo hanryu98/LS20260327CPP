@@ -1,4 +1,4 @@
-#include "World.h"
+癤�#include "World.h"
 #include "Engine.h"
 
 #include <fstream>
@@ -12,6 +12,7 @@
 #include "Floor.h"
 #include "RenderableComponent.h"
 #include "SpriteComponent.h"
+#include "GameMode.h"
 
 UWorld::UWorld()
 {
@@ -29,6 +30,9 @@ UWorld::~UWorld()
 
 void UWorld::Load(std::string MapName)
 {
+	Actors.push_back(new AGameMode());
+
+
 	std::ifstream MapStream(MapName);
 
 	int Y = 0;
@@ -134,6 +138,14 @@ void UWorld::Sort()
 	//}
 }
 
+void UWorld::BeginPlay()
+{
+	for (auto Actor : Actors)
+	{
+		Actor->BeginPlay();
+	}
+}
+
 void UWorld::Tick()
 {
 	for (auto Actor : Actors)
@@ -146,13 +158,13 @@ void UWorld::Render()
 {
 	GEngine->Clear();
 
-	//모든 액터중에서 Render가능한 컴포넌트가 있으면 렌더 하세요.
+
 	for (auto Actor : Actors)
 	{
-		//가진 컴포넌트중에 SpriteRenderComponent가 있냐 물어보는거임?
+		
 		for (auto Component : Actor->Components)
 		{
-			USpriteComponent* RenderComponent = dynamic_cast<USpriteComponent*>(Component);
+			IRenderableComponent* RenderComponent = dynamic_cast<IRenderableComponent*>(Component);
 			if (RenderComponent)
 			{
 				RenderComponent->Render();
@@ -162,4 +174,3 @@ void UWorld::Render()
 
 	GEngine->Flip();
 }
-

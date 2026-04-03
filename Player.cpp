@@ -6,7 +6,7 @@
 #include "SpriteAnimationComponent.h"
 #include "CollisionComponent.h"
 
-APlayer::APlayer(int InX, int InY, char InMesh)  
+APlayer::APlayer(int InX, int InY, char InMesh)
 {
 	X = InX;
 	Y = InY;
@@ -38,10 +38,10 @@ void APlayer::BeginPlay()
 	__super::BeginPlay();
 
 	OnActorBeginOverlap = [&](AActor* Other) -> void {
+		SDL_Log("Complete");
+		};
 
-	};
-
-	//OnActorBeginOverlap = ProcessBeginOverlap(nullptr);
+	//OnActorBeginOverlap = std::bind(&APlayer::ProcessBeginOverlap, this, std::placeholders::_1);
 
 }
 
@@ -54,7 +54,7 @@ void APlayer::Tick()
 	if (Event.type == SDL_KEYDOWN)
 	{
 		SDL_Keycode KeyCode = Event.key.keysym.sym;
-		
+
 		if (KeyCode == SDLK_w && PredictMove(X, Y - 1))
 		{
 			Y--;
@@ -80,7 +80,7 @@ void APlayer::Tick()
 			SpriteAnimationComponent->SpriteIndexX = 0;
 		}
 		if (KeyCode == SDLK_ESCAPE)
-		{ 
+		{
 			GEngine->Stop();
 		}
 	}
@@ -93,32 +93,6 @@ void APlayer::ReceiveHit(AActor* Other)
 
 void APlayer::ProcessBeginOverlap(AActor* OtherActor)
 {
-
+	SDL_Log("You Die");
 }
 
-bool APlayer::PredictMove(int InX, int InY)
-{
-	for (auto Other : GEngine->GetWorld()->GetActors())
-	{
-		for (auto OtherComponent : Other->Components)
-		{
-			UCollisionComponent* OtherCollision = dynamic_cast<UCollisionComponent*>(OtherComponent);
-			if (OtherCollision)
-			{
-				if (OtherCollision->bIsGenerateHit && InX == Other->GetX() && InY == Other->GetY())
-				{
-					ReceiveHit(Other);
-					return false;
-				}
-
-				//if (OtherCollision->bIsGenerateOverlap && InX == Other->GetX() && InY == Other->GetY())
-				//{
-				//	OnActorBeginOverlap(Other);
-				//	return false;
-				//}
-			}
-		}
-	}
-
-	return true;
-}

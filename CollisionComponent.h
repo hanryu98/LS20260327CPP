@@ -1,16 +1,18 @@
-#pragma once
+﻿#pragma once
 #include "Component.h"
 
 class UCollisionComponent : public UComponent
 {
-public: 
+public:
 	UCollisionComponent();
 	virtual ~UCollisionComponent();
 
 	virtual void BeginPlay() override;
+
 	virtual void Tick() override;
 
 	int bIsGenerateOverlap : 1;
-	int bIsGenerateHit : 1;
-};
 
+	int bIsGenerateHit : 1;
+
+};

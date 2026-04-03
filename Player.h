@@ -1,12 +1,12 @@
 ﻿#pragma once
-#include "Actor.h"
-#include <xkeycheck.h>
+#include "Character.h"
+
 
 class USpriteAnimationComponent;
 class UCollisionComponent;
 class AActor;
 
-class APlayer : public AActor
+class APlayer : public ACharacter
 {
 public:
 	APlayer(int InX = 1, int InY = 1, char InMesh = 'P');
@@ -23,9 +23,4 @@ public:
 	USpriteAnimationComponent* SpriteAnimationComponent;
 
 	UCollisionComponent* CollisionComponent;
-
-protected:
-	bool PredictMove(int InX, int InY); //Movement Component ¸¸µå¼À //³­ ¾ÈÇÑ´Ù.
-
-
 };

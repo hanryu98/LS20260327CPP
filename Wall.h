@@ -14,6 +14,4 @@ public:
 
 	UCollisionComponent* CollisionComponent;
 
-
-
 };

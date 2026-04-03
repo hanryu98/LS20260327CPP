@@ -50,6 +50,8 @@ void UEngine::Term()
 
 void UEngine::Run()
 {
+	World->BeginPlay();
+
 	Uint64 LastTime;
 	while (bIsRunning)
 	{
@@ -86,8 +88,7 @@ void UEngine::InitBuffer()
 
 void UEngine::Clear()
 {
-	//CPU하는건 GPU가 할일을 적는거야. 많이 많이 많이
-	//GPU 한테 보낼 명령어 모음
+	
 	SDL_SetRenderDrawColor(MyRenderer, 255, 255, 255, 255);
 	SDL_RenderClear(MyRenderer);
 
@@ -158,6 +159,6 @@ void UEngine::Render()
 {
 	World->Render();
 
-	//그려CPU -> GPU
+	//�׷�CPU -> GPU
 	SDL_RenderPresent(MyRenderer);
 }
