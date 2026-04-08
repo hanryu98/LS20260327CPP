@@ -3,10 +3,10 @@
 
 AYoudieActor::AYoudieActor()
 {
-	TextRenderComponent->SetText("You Died.");
-	X = 200;
-	Y = 100;
-	TextRenderComponent->ZOrder = 200;
+	TextRenderComponent->SetText("Game Over");
+	X = 380;
+	Y = 300;
+	TextRenderComponent->ZOrder = 4000;
 	TextRenderComponent->bIsVisible = false;
 }
 

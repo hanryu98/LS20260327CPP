@@ -10,7 +10,6 @@ struct SDL_Texture;
 
 class UComponent;
 
-
 class AActor
 {
 public:
