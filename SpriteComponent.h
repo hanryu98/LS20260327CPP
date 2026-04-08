@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "Component.h"
 #include "RenderableComponent.h"
 #include "SDL.h"
@@ -9,16 +9,15 @@ public:
 	USpriteComponent();
 	~USpriteComponent();
 
-	//UComponentÀÇ ±¸Çö, Abstract Class, 
+	//UComponentï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, Abstract Class, 
 	virtual void BeginPlay() override;
 
 	virtual void Tick() override;
 
-	//IRenderableComponent¸¦ ±¸Çö, Interface¶ó´Â ±¸Çö(C++¹®¹ýÀÌ ¾øÀ½, Blueprint, C#, java)
-	//UE¿¡´Â ÀÖÀ½
+	//IRenderableComponentï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, Interfaceï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(C++ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, Blueprint, C#, java)
+	//UEï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	virtual void Render() override;
 
-	int ZOrder = 0;
 
 	SDL_Surface* Image;
 	SDL_Texture* Texture;

@@ -1,9 +1,12 @@
-#include "SpriteComponent.h"
+﻿#include "SpriteComponent.h"
 #include "Engine.h"
 #include "Actor.h"
 
 USpriteComponent::USpriteComponent()
 {
+	bIsVisible = true;
+	Image = nullptr;
+	Texture = nullptr;
 }
 
 USpriteComponent::~USpriteComponent()

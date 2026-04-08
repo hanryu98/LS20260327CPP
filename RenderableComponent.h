@@ -1,11 +1,13 @@
-#pragma once
+ï»¿#pragma once
 
-//interface, C++ interface°¡ ¾øÀ½
+//interface, c++ interface ï¿½ï¿½ï¿½ï¿½
 //abstract class, pure virtual function
 class IRenderableComponent
 {
 public:
 	virtual void Render() = 0;
 
-};
+	int ZOrder = 0;
 
+	int bIsVisible : 1;
+};

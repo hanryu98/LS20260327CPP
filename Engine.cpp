@@ -25,6 +25,13 @@ void UEngine::Init()
 	MyRenderer = SDL_CreateRenderer(MyWindow, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE);
 	//MyRender = SDL_CreateRenderer(MyWindow, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_SOFTWARE);
 
+	Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096);
+
+	TTF_Init();
+
+	Font = TTF_OpenFont("./Data/font.ttf", 32);
+
+
 	ResourceManager = new UResourceManager();
 
 	bIsRunning = true;
@@ -36,6 +43,15 @@ void UEngine::Init()
 
 void UEngine::Term()
 {
+	//리로스 매니저 바꾸면 된다.
+	if (Font)
+	{
+		TTF_CloseFont(Font);
+	}
+
+	Mix_CloseAudio();
+
+	TTF_Quit();
 	SDL_DestroyRenderer(MyRenderer);
 	SDL_DestroyWindow(MyWindow);
 	SDL_Quit();
@@ -88,7 +104,8 @@ void UEngine::InitBuffer()
 
 void UEngine::Clear()
 {
-	
+	//CPU하는건 GPU가 할일을 적는거야. 많이 많이 많이
+	//GPU 한테 보낼 명령어 모음
 	SDL_SetRenderDrawColor(MyRenderer, 255, 255, 255, 255);
 	SDL_RenderClear(MyRenderer);
 
@@ -159,8 +176,6 @@ void UEngine::Render()
 {
 	World->Render();
 
-	//�׷�CPU -> GPU
+	//그려CPU -> GPU
 	SDL_RenderPresent(MyRenderer);
 }
-
-// https://cppdeveloper.tistory.com/entry/C%EB%A1%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%EA%B2%8C%EC%9E%84-%EC%97%94%EC%A7%84-%EA%B0%9C%EB%B0%9C-Day-13-%EC%82%AC%EC%9A%B4%EB%93%9C-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EA%B8%B0%EC%B4%88-SDLmixer
